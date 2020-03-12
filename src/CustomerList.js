@@ -6,7 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 
-const CustomerList = ({ customers }) => {
+export default function CustomerList({ customers }) {
   const [ageFiltered, setAgeFiltered] = useState(false);
   const [selectedCustomer, setSelectedCustomer] = useState({});
 
@@ -17,13 +17,13 @@ const CustomerList = ({ customers }) => {
       <h2>Customers</h2>
 
       <FormControlLabel
+        label="show age 35 or younger"
         control={
           <Checkbox
             checked={ageFiltered}
             onChange={() => setAgeFiltered(!ageFiltered)}
           />
         }
-        label="show age 35 or younger"
       />
 
       {customers
@@ -32,13 +32,10 @@ const CustomerList = ({ customers }) => {
           return age <= 35;
         })
         .map(customer => {
-
-          // console.log('isSelectedCustomer', isSelectedCustomer(customer) && 'selected-customer');
-
           return (
             <Card
-              key={customer.id}
-              className={`customer ${isSelectedCustomer(customer) ? 'selected-customer' : ''}` }
+              key={`customer_${customer.id}`}
+              className={`customer ${isSelectedCustomer(customer) ? 'selected-customer' : ''}`}
               onClick={e => {
                 e.stopPropagation();
                 if (isSelectedCustomer(customer)) {
@@ -48,29 +45,23 @@ const CustomerList = ({ customers }) => {
               }}
             >
               <CardContent>
-                <Typography color="textPrimary">{customer.name}</Typography>
-                <Typography color="textSecondary">{customer.age}</Typography>
+
+                <Typography variant="h6" color="textPrimary">
+                  {customer.name}
+                </Typography>
+
+                <Typography color="textSecondary">
+                  {customer.age}
+                </Typography>
+
                 <Typography color="textSecondary">
                   {customer.company.name}
                 </Typography>
 
-                {/* <Typography variant="h5" component="h2">
-  
-              </Typography>
-              <Typography color="textSecondary">
-              adjective
-              </Typography> */}
-                {/* <Typography variant="body2" component="p">
-              well meaning and kindly.
-              <br />
-              {'"a benevolent smile"'}
-              </Typography> */}
               </CardContent>
             </Card>
           );
         })}
     </div>
   );
-};
-
-export default CustomerList;
+}
