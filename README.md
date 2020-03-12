@@ -1,2 +1,4 @@
-# customer-meeting-list
-Created with CodeSandbox
+- Use data contained in the file data.json to populate your list of customers on initial app load.
+- Display each customer in the list using the material-ui card (https://material-ui.com/components/cards/).  In each card be sure to include customer name, age and company name.  Center the cards on the page with a width of 300px.
+- When clicking on a card, change the background color to blue. Clicking the card again or outside of the card removes the blue background.
+- Create a checkbox (third party or browser default) that filters the list to show users that are 35 or younger when checked.  When filtered, cards should vertically fill the page.  First card will be at the top of the page and the last at the bottom with any other cards filling the space between.

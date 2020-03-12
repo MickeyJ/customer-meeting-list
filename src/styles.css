@@ -1,0 +1,16 @@
+.customer-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.customer {
+  width: 300px;
+  margin-bottom: 25px;
+  cursor: pointer;
+}
+
+.selected-customer {
+  background-color: skyblue;
+}
