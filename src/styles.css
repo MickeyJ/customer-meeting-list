@@ -1,9 +1,13 @@
+
+body {
+  font-family: "Open Sans", sans-serif;
+}
+
 .customer-list {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-
 
 .customer {
   width: 300px;
@@ -12,5 +16,5 @@
 }
 
 .selected-customer {
-  background-color: skyblue;
+  background-color: skyblue !important;
 }

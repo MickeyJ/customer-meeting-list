@@ -1,7 +1,7 @@
-import React from "react";
-import CustomerList from "./CustomerList";
+import React from 'react';
+import CustomerList from './CustomerList';
 
-import { data as customers } from "../data.json";
+import { data as customers } from './data.json';
 
 export default class CustomerApp extends React.Component {
   // normally I would fetch data in DidMount or WillMount,

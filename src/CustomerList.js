@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import Typography from "@material-ui/core/Typography";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
 
 const CustomerList = ({ customers }) => {
   const [ageFiltered, setAgeFiltered] = useState(false);
@@ -32,10 +32,13 @@ const CustomerList = ({ customers }) => {
           return age <= 35;
         })
         .map(customer => {
+
+          // console.log('isSelectedCustomer', isSelectedCustomer(customer) && 'selected-customer');
+
           return (
             <Card
-              className={`customer ${isSelectedCustomer(customer) &&
-                "selected-customer"}`}
+              key={customer.id}
+              className={`customer ${isSelectedCustomer(customer) ? 'selected-customer' : ''}` }
               onClick={e => {
                 e.stopPropagation();
                 if (isSelectedCustomer(customer)) {
