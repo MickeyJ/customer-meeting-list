@@ -7,61 +7,79 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 
 export default function CustomerList({ customers }) {
-  const [ageFiltered, setAgeFiltered] = useState(false);
   const [selectedCustomer, setSelectedCustomer] = useState({});
+  const [showThirtyFiveOrYounger, setShowThirtyFiveOrYounger] = useState(false);
 
   const isSelectedCustomer = customer => customer.id === selectedCustomer.id;
 
   return (
-    <div className="customer-list" onClick={() => setSelectedCustomer({})}>
-      <h2>Customers</h2>
+    <div
+      className="customer-list-page"
+      onClick={() => setSelectedCustomer({})}
+    >
 
-      <FormControlLabel
-        label="show age 35 or younger"
-        control={
-          <Checkbox
-            checked={ageFiltered}
-            onChange={() => setAgeFiltered(!ageFiltered)}
+      <header className="customer-list-header">
+
+        <h2>Customers</h2>
+
+        <div className="customer-list-options">
+          <FormControlLabel
+            label="show customers age 35 or younger"
+            onClick={e => e.stopPropagation()}
+            control={
+              <Checkbox
+                checked={showThirtyFiveOrYounger}
+                onChange={() => setShowThirtyFiveOrYounger(!showThirtyFiveOrYounger)}
+              />
+            }
           />
-        }
-      />
+        </div>
 
-      {customers
-        .filter(({ age }) => {
-          if (!ageFiltered) return true;
-          return age <= 35;
-        })
-        .map(customer => {
-          return (
-            <Card
-              key={`customer_${customer.id}`}
-              className={`customer ${isSelectedCustomer(customer) ? 'selected-customer' : ''}`}
-              onClick={e => {
-                e.stopPropagation();
-                if (isSelectedCustomer(customer)) {
-                  return setSelectedCustomer({});
-                }
-                setSelectedCustomer(customer);
-              }}
-            >
-              <CardContent>
+      </header>
 
-                <Typography variant="h6" color="textPrimary">
-                  {customer.name}
-                </Typography>
+      <section className="customer-list-scroll-wrapper">
+        <div className="customer-list">
+          {customers
+            .filter(({ age }) => !showThirtyFiveOrYounger || age <= 35)
+            .map(customer => {
+              return (
+                <Card
+                  raised
+                  key={`customer_${customer.id}`}
+                  className={`customer ${isSelectedCustomer(customer) ? 'selected-customer' : ''}`}
+                  onClick={e => {
+                    e.stopPropagation();
 
-                <Typography color="textSecondary">
-                  {customer.age}
-                </Typography>
+                    if (isSelectedCustomer(customer)) {
+                      return setSelectedCustomer({});
+                    }
+                    setSelectedCustomer(customer);
+                  }}
+                >
+                  <CardContent
+                    style={{ color: isSelectedCustomer(customer)}}
+                  >
 
-                <Typography color="textSecondary">
-                  {customer.company.name}
-                </Typography>
+                    <Typography variant="h6" color="textPrimary" align="center">
+                      {customer.name}
+                    </Typography>
 
-              </CardContent>
-            </Card>
-          );
-        })}
+                    <Typography color="textSecondary">
+                      age: {customer.age}
+                    </Typography>
+
+                    <Typography color="textSecondary">
+                      company: {customer.company.name}
+                    </Typography>
+
+                  </CardContent>
+                </Card>
+              );
+            })}
+        </div>
+      </section>
+
+
     </div>
   );
 }
