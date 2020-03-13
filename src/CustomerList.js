@@ -60,16 +60,16 @@ export default function CustomerList({ customers }) {
                     style={{ color: isSelectedCustomer(customer)}}
                   >
 
-                    <Typography variant="h6" color="textPrimary" align="center">
+                    <Typography variant="h5" component="h2">
                       {customer.name}
                     </Typography>
 
-                    <Typography color="textSecondary">
-                      age: {customer.age}
+                    <Typography gutterBottom variant="body2" color="textSecondary" component="p">
+                      {customer.company.name}
                     </Typography>
 
-                    <Typography color="textSecondary">
-                      company: {customer.company.name}
+                    <Typography variant="body1" color="textSecondary" component="p">
+                      age: {customer.age}
                     </Typography>
 
                   </CardContent>
@@ -78,7 +78,6 @@ export default function CustomerList({ customers }) {
             })}
         </div>
       </section>
-
 
     </div>
   );
