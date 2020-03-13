@@ -56,9 +56,7 @@ export default function CustomerList({ customers }) {
                     setSelectedCustomer(customer);
                   }}
                 >
-                  <CardContent
-                    style={{ color: isSelectedCustomer(customer)}}
-                  >
+                  <CardContent>
 
                     <Typography variant="h5" component="h2">
                       {customer.name}
