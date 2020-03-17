@@ -7,15 +7,15 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 
 export default function CustomerList({ customers }) {
-  const [selectedCustomer, setSelectedCustomer] = useState({});
+  const [selectedCustomerId, setSelectedCustomerId] = useState({});
   const [showThirtyFiveOrYounger, setShowThirtyFiveOrYounger] = useState(false);
 
-  const isSelectedCustomer = customer => customer.id === selectedCustomer.id;
+  const isSelectedCustomer = customer => customer.id === selectedCustomerId;
 
   return (
     <div
       className="customer-list-page"
-      onClick={() => setSelectedCustomer({})}
+      onClick={() => setSelectedCustomerId(null)}
     >
 
       <header className="customer-list-header">
@@ -51,9 +51,9 @@ export default function CustomerList({ customers }) {
                     e.stopPropagation();
 
                     if (isSelectedCustomer(customer)) {
-                      return setSelectedCustomer({});
+                      return setSelectedCustomerId(null);
                     }
-                    setSelectedCustomer(customer);
+                    setSelectedCustomerId(customer.id);
                   }}
                 >
                   <CardContent>
