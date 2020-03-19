@@ -41,39 +41,37 @@ export default function CustomerList({ customers }) {
         <div className="customer-list">
           {customers
             .filter(({ age }) => !showThirtyFiveOrYounger || age <= 35)
-            .map(customer => {
-              return (
-                <Card
-                  raised
-                  key={`customer_${customer.id}`}
-                  className={`customer ${isSelectedCustomer(customer) ? 'selected-customer' : ''}`}
-                  onClick={e => {
-                    e.stopPropagation();
+            .map(customer => (
+              <Card
+                raised
+                key={`customer_${customer.id}`}
+                className={`customer ${isSelectedCustomer(customer) ? 'selected-customer' : ''}`}
+                onClick={e => {
+                  e.stopPropagation();
 
-                    if (isSelectedCustomer(customer)) {
-                      return setSelectedCustomerId(null);
-                    }
-                    setSelectedCustomerId(customer.id);
-                  }}
-                >
-                  <CardContent>
+                  if (isSelectedCustomer(customer)) {
+                    return setSelectedCustomerId(null);
+                  }
+                  setSelectedCustomerId(customer.id);
+                }}
+              >
+                <CardContent>
 
-                    <Typography variant="h5" component="h2">
-                      {customer.name}
-                    </Typography>
+                  <Typography variant="h5" component="h2">
+                    {customer.name}
+                  </Typography>
 
-                    <Typography gutterBottom variant="body2" color="textSecondary" component="p">
-                      {customer.company.name}
-                    </Typography>
+                  <Typography gutterBottom variant="body2" color="textSecondary" component="p">
+                    {customer.company.name}
+                  </Typography>
 
-                    <Typography variant="body1" color="textSecondary" component="p">
-                      age: {customer.age}
-                    </Typography>
+                  <Typography variant="body1" color="textSecondary" component="p">
+                    age: {customer.age}
+                  </Typography>
 
-                  </CardContent>
-                </Card>
-              );
-            })}
+                </CardContent>
+              </Card>
+            ))}
         </div>
       </section>
 
